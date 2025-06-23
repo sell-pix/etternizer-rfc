@@ -8,6 +8,7 @@ This RFC proposes the architecture for a reliable, scalable image upload and wat
 - [Personas](#Personas)
 - [Usability](#Usability)
 - [Architecture Overview](#Architecture-Overview)
+- [Codebase](#codebase)
 - [Security](#security)
 
 ## Problem description
@@ -55,31 +56,39 @@ The system should scale without degrading UX.
 
 <img src="./architecture.png" alt="architecture diagram">
 
-| Components | Tech                               |
-|------------|------------------------------------|
-| Frontend   | React (with shadcn/ui)             |
-| API        | Deno w/ Hono, Supabase             |
-| Storage    | AWS S3                             |
-| Queue      | RabbitMQ or Redis Streams          |
-| Worker     | Deno, ImageMagick                  |
-| CDN        | Cloudflare (custom hosts, caching) |
-| Email      | Resend or Sendgrid                 |
-| Pix        | Woovi?                             |
+| Components | Tech                                             |
+|------------|--------------------------------------------------|
+| Frontend   | React (with shadcn/ui)                           |
+| API        | Bun w/ [Elysia](https://elysiajs.com/), Supabase |
+| Storage    | [BackBlaze](https://www.backblaze.com/)          |
+| Queue      | RabbitMQ                                         |
+| Worker     | Bun, ImageMagick                                 |
+| CDN        | Cloudflare (custom hosts, caching)               |
+| Email      | Resend                                           |
+| Pix        | Woovi?                                           |
 
 
 - Frontend: Built using React with shadcn/ui for a consistent and customizable UI design system.
 
-- API: Powered by Deno with the lightweight Hono framework and uses Supabase for backend services like authentication and database.
+- API: Powered by Bun with the Elysia framework and uses Supabase for backend services like authentication and database.
 
-- Storage: Files are stored securely on AWS S3, ensuring reliability and scalability.
+- Storage: Files are stored securely on Backblaze (S3 compatible), ensuring scalability.
 
-- Queue: Asynchronous processing is handled using RabbitMQ or Redis Streams to manage workloads efficiently.
+- Queue: Asynchronous processing is handled using RabbitMQ to manage workloads efficiently.
 
-- Worker: Background tasks like image processing are handled by Deno and ImageMagick.
+- Worker: Bun and ImageMagick handle background tasks like image processing.
 
 - CDN: Cloudflare provides a fast and secure content delivery network with custom host support and caching.
 
-- Email: Transactional and system emails are sent via Resend or SendGrid.
+- Email: Transactional and system emails are sent via Resend.
+
+## Codebase
+
+Bun's package manager supports npm "workspaces" This allows us to split a codebase into multiple distinct "packages" that live in the same repository, can depend on each other, and (when possible) share a node_modules directory.
+
+> [!NOTE]
+> Bun supports the "workspace:*" syntax.
+
 
 ## Security
 
