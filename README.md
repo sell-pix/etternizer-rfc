@@ -57,21 +57,21 @@ The system should scale without degrading UX.
 
 <img src="./architecture.png" alt="architecture diagram">
 
-| Components | Tech                                             |
-|------------|--------------------------------------------------|
-| Frontend   | React (with shadcn/ui)                           |
-| API        | Bun w/ [Elysia](https://elysiajs.com/), Supabase |
-| Storage    | [BackBlaze](https://www.backblaze.com/)          |
-| Queue      | RabbitMQ                                         |
-| Worker     | Bun, ImageMagick                                 |
-| CDN        | Cloudflare (custom hosts, caching)               |
-| Email      | Resend                                           |
-| Pix        | Woovi?                                           |
+| Components | Tech                                    |
+|------------|-----------------------------------------|
+| Frontend   | React (with shadcn/ui)                  |
+| API        | Bun w/ [Elysia](https://elysiajs.com/)  |
+| Storage    | [BackBlaze](https://www.backblaze.com/) |
+| Queue      | RabbitMQ                                |
+| Worker     | Bun, ImageMagick                        |
+| CDN        | Cloudflare (custom hosts, caching)      |
+| Email      | Resend                                  |
+| Pix        | Woovi?                                  |
 
 
 - Frontend: Built using React with shadcn/ui for a consistent and customizable UI design system.
 
-- API: Powered by Bun with the Elysia framework and uses Supabase for backend services like authentication and database.
+- API: Powered by Bun with the Elysia framework.
 
 - Storage: Files are stored securely on Backblaze (S3 compatible), ensuring scalability.
 
