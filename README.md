@@ -10,6 +10,7 @@ This RFC proposes the architecture for a reliable, scalable image upload and wat
 - [Architecture Overview](#Architecture-Overview)
 - [Codebase](#codebase)
 - [Security](#security)
+- [Legal](./LEGAL.md)
 
 ## Problem description
 
